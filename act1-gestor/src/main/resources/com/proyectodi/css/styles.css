@@ -1,0 +1,162 @@
+/* Estilos generales para el Dashboard de Tareas - 2º DAM */
+
+.header-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+/* Tarjetas resumen (KPIs) de arriba */
+.kpi-card {
+    -fx-background-color: #ffffff;
+    -fx-padding: 12px 14px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+}
+
+.kpi-card-warning {
+    -fx-background-color: #fffaf0;
+    -fx-border-color: #feebc8;
+}
+
+.kpi-title {
+    -fx-font-size: 11px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: bold;
+}
+
+.kpi-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563eb;
+}
+
+.kpi-value-warning {
+    -fx-text-fill: #ea580c;
+}
+
+.kpi-card-info {
+    -fx-background-color: #f0f9ff;
+    -fx-border-color: #bae6fd;
+}
+
+.kpi-value-info {
+    -fx-text-fill: #0284c7;
+}
+
+.kpi-card-success {
+    -fx-background-color: #f0fdf4;
+    -fx-border-color: #bbf7d0;
+}
+
+.kpi-value-success {
+    -fx-text-fill: #16a34a;
+}
+
+.filter-count-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #475569;
+    -fx-font-weight: bold;
+    -fx-padding: 0 4px;
+}
+
+/* Campos de solo lectura para dejar claro al usuario que no se editan a mano */
+.text-field:disabled, .text-field:read-only {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #64748b;
+    -fx-border-color: #cbd5e1;
+}
+
+.modal-window {
+    -fx-background-color: #f8fafc;
+}
+
+/* Barra de busqueda */
+.filter-bar {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 10px 12px;
+    -fx-background-radius: 6px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 6px;
+}
+
+.filter-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+/* Panel derecho del formulario */
+.detail-pane {
+    -fx-background-color: #ffffff;
+}
+
+.section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.hint-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #64748b;
+}
+
+/* Botones con tamaños amplios para evitar truncado y sin glifos rotos (Registro IA #6 en docs/IA.md) */
+.primary-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+.success-button {
+    -fx-background-color: #16a34a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.success-button:hover {
+    -fx-background-color: #15803d;
+}
+
+.danger-button {
+    -fx-background-color: #dc2626;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #b91c1c;
+}
+
+.secondary-button {
+    -fx-background-color: #64748b;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 8px 12px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #475569;
+}

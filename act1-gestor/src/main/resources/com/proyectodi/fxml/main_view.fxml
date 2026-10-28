@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.proyectodi.controller.MainController"
+      spacing="14.0" stylesheets="@../css/styles.css">
+
+    <padding>
+        <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
+    </padding>
+
+    <!-- Titulo principal y tarjetas resumen (KPIs) -->
+    <VBox spacing="10.0">
+        <Label text="Dashboard de Incidencias y Tareas" styleClass="header-title"/>
+        <HBox spacing="12.0">
+            <!-- Tarjeta 1: Total tareas -->
+            <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                <Label text="TOTAL TAREAS" styleClass="kpi-title"/>
+                <Label fx:id="lblTotalItems" text="0" styleClass="kpi-value"/>
+            </VBox>
+
+            <!-- Tarjeta 2: Tareas pendientes (naranja) -->
+            <VBox styleClass="kpi-card, kpi-card-warning" HBox.hgrow="ALWAYS">
+                <Label text="PENDIENTES" styleClass="kpi-title"/>
+                <Label fx:id="lblPendingCount" text="0" styleClass="kpi-value, kpi-value-warning"/>
+            </VBox>
+
+            <!-- Tarjeta 3: Tareas en proceso (azul celeste) -->
+            <VBox styleClass="kpi-card, kpi-card-info" HBox.hgrow="ALWAYS">
+                <Label text="EN PROCESO" styleClass="kpi-title"/>
+                <Label fx:id="lblInProgressCount" text="0" styleClass="kpi-value, kpi-value-info"/>
+            </VBox>
+
+            <!-- Tarjeta 4: Tareas completadas / resueltas (verde) -->
+            <VBox styleClass="kpi-card, kpi-card-success" HBox.hgrow="ALWAYS">
+                <Label text="COMPLETADAS" styleClass="kpi-title"/>
+                <Label fx:id="lblCompletedCount" text="0" styleClass="kpi-value, kpi-value-success"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Barra de busqueda, filtros y boton principal para crear nueva tarea -->
+    <HBox spacing="10.0" alignment="CENTER_LEFT" styleClass="filter-bar">
+        <Label text="Filtrar:" styleClass="filter-label"/>
+        <TextField fx:id="txtSearchFilter" promptText="Buscar por nombre de tarea o categoría..." HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="cmbStatusFilter" promptText="Estado" prefWidth="130.0"/>
+        <Button text="Limpiar Filtros" onAction="#handleClearFilters" styleClass="secondary-button"/>
+        <Label fx:id="lblFilteredCount" text="(4 visibles)" styleClass="filter-count-label"/>
+        <Button text="+ Nueva Tarea..." onAction="#handleOpenNewTaskWindow" styleClass="success-button"/>
+    </HBox>
+
+    <!-- Panel dividido: Tabla a la izquierda y Detalle a la derecha -->
+    <SplitPane dividerPositions="0.58" VBox.vgrow="ALWAYS">
+        <!-- Parte izquierda: Tabla de tareas -->
+        <VBox spacing="8.0">
+            <TableView fx:id="tableItems" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50.0"/>
+                    <TableColumn fx:id="colName" text="Tarea" prefWidth="190.0"/>
+                    <TableColumn fx:id="colCategory" text="Categoría" prefWidth="110.0"/>
+                    <TableColumn fx:id="colPrice" text="Horas (h)" prefWidth="80.0"/>
+                    <TableColumn fx:id="colStatus" text="Estado" prefWidth="110.0"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+
+        <!-- Parte derecha: Formulario exclusivamente para VER y EDITAR la tarea seleccionada -->
+        <VBox spacing="12.0" styleClass="detail-pane">
+            <padding>
+                <Insets top="14.0" right="16.0" bottom="14.0" left="16.0"/>
+            </padding>
+
+            <VBox spacing="4.0">
+                <Label text="Detalle de la Tarea" styleClass="section-title"/>
+                <Label text="Modifica los campos de la tarea seleccionada y pulsa 'Guardar Cambios':"
+                       wrapText="true" styleClass="hint-label"/>
+            </VBox>
+
+            <!-- Formulario con los campos de la tarea -->
+            <GridPane hgap="10.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="80.0" prefWidth="80.0"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDetailId" editable="false" promptText="Automático" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Tarea:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDetailName" promptText="Nombre de la tarea" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Categoría:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDetailCategory" promptText="Categoría" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Horas (h):" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtDetailPrice" promptText="Horas estimadas" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Estado:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="cmbDetailStatus" promptText="Estado de la tarea" maxWidth="Infinity" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- Botones de edicion: Guardar arriba a lo ancho, Deseleccionar y Eliminar abajo -->
+            <VBox spacing="8.0" style="-fx-padding: 8px 0 0 0;">
+                <HBox>
+                    <Button text="Guardar " onAction="#handleSaveChanges" styleClass="primary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <HBox spacing="10.0">
+                    <Button text="Deseleccionar" onAction="#handleClearFields" styleClass="secondary-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    <Button text="Eliminar Tarea" onAction="#handleDeleteItem" styleClass="danger-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </SplitPane>
+</VBox>

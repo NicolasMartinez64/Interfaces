@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.proyectodi.controller.NewTaskController"
+      spacing="14.0" stylesheets="@../css/styles.css" styleClass="modal-window">
+
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <!-- Titulo de la ventana modal -->
+    <VBox spacing="4.0">
+        <Label text="Crear Nueva Tarea" styleClass="section-title"/>
+        <Label text="Introduce los datos para registrar la tarea en la lista:" styleClass="hint-label"/>
+    </VBox>
+
+    <!-- Formulario de entrada -->
+    <GridPane hgap="10.0" vgap="12.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="90.0" prefWidth="90.0"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Tarea (*):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtName" promptText="Ej: Maquetar vista de login" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Categoría:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCategory" promptText="Ej: Frontend, Backend, Documentación..." GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Horas (h):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtPrice" promptText="Ej: 3.5" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Estado:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cmbStatus" promptText="Seleccionar estado" maxWidth="Infinity" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Botones de accion: Cancelar con Escape y Guardar con Enter (atajos tipicos d UX) -->
+    <HBox spacing="10.0" alignment="CENTER_RIGHT" style="-fx-padding: 10px 0 0 0;">
+        <Button text="Cancelar" onAction="#handleCancel" cancelButton="true" styleClass="secondary-button"/>
+        <Button text="Guardar Tarea" onAction="#handleSave" defaultButton="true" styleClass="success-button"/>
+    </HBox>
+</VBox>
+
